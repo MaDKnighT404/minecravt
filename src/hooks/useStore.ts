@@ -18,14 +18,20 @@ type Store = {
 };
 
 export const useStore = create<Store>((set) => ({
-  texture: 'dirt',
-  cubes: [{ key: nanoid(), pos: [1, 0.5, -4], texture: 'dirt' }],
+  texture: 'wood',
+  cubes: [],
   addCube: (x, y, z) => {
     set((prev) => ({
       cubes: [...prev.cubes, { key: nanoid(), pos: [x, y, z], texture: prev.texture }],
     }));
   },
-  removeCube: () => {},
+  removeCube: (x, y, z) => {
+    set((prev) => ({
+      cubes: prev.cubes.filter(
+        (cube) => cube.pos[0] !== x || cube.pos[1] !== y || cube.pos[2] !== z
+      ),
+    }));
+  },
   setTexture: () => {},
   saveWorld: () => {},
   resetWorld: () => {},
