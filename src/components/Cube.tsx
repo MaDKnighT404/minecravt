@@ -24,8 +24,9 @@ export const Cube = ({ position, texture }: CubeProps) => {
       ref={ref as React.Ref<Mesh>}
       onClick={(e) => {
         e.stopPropagation();
+        if (e.faceIndex === undefined) return;
         const clickedFace = Math.floor(e.faceIndex / 2);
-        const { x, y, z } = ref.current?.position;
+        const { x, y, z } = ref.current!.position;
 
         if (e.altKey) {
           removeCube(x, y, z);

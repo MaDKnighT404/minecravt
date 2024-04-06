@@ -11,7 +11,7 @@ type Store = {
   texture: string;
   cubes: Cube[];
   addCube: (x: number, y: number, z: number) => void;
-  removeCube: () => void;
+  removeCube: (x: number, y: number, z: number) => void;
   setTexture: () => void;
   saveWorld: () => void;
   resetWorld: () => void;
