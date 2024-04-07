@@ -49,6 +49,13 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.top {
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .cursor {
   color: white;
 }
@@ -59,9 +66,17 @@ body {
 
 .texture-selector img.active {
   border: 2px solid red;
+  color: #c2c2c2
 }
 
 .menu {
   top: 0px;
   left: 10px;
 }
+
+.message {
+  font-size: 60px;
+  color: rgb(114, 8, 180);
+  text-align: center;
+}
+

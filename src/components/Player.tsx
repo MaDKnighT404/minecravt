@@ -4,8 +4,8 @@ import { Mesh, Vector3 } from 'three';
 import { useEffect, useRef } from 'react';
 import { useKeyboard } from '../hooks/useKeyboard';
 
-const JUMP_FORCE = 5;
-const SPEED = 5;
+const JUMP_FORCE = 8;
+const SPEED = 7;
 
 export const Player = () => {
   const { camera } = useThree();

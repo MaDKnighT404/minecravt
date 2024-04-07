@@ -12,14 +12,23 @@ type Store = {
   cubes: Cube[];
   addCube: (x: number, y: number, z: number) => void;
   removeCube: (x: number, y: number, z: number) => void;
-  setTexture: () => void;
+  setTexture: (texture: string) => void;
   saveWorld: () => void;
   resetWorld: () => void;
 };
 
+const getLocalStorage = (key: string) => {
+  const item = window.localStorage.getItem(key);
+  return item ? JSON.parse(item) : null;
+};
+
+const setLocalStorage = (key: string, value: any) => {
+  window.localStorage.setItem(key, JSON.stringify(value));
+};
+
 export const useStore = create<Store>((set) => ({
-  texture: 'wood',
-  cubes: [],
+  texture: 'dirt',
+  cubes: getLocalStorage('cubes') || [],
   addCube: (x, y, z) => {
     set((prev) => ({
       cubes: [...prev.cubes, { key: nanoid(), pos: [x, y, z], texture: prev.texture }],
@@ -32,7 +41,20 @@ export const useStore = create<Store>((set) => ({
       ),
     }));
   },
-  setTexture: () => {},
-  saveWorld: () => {},
-  resetWorld: () => {},
+  setTexture: (texture) => {
+    set(() => ({
+      texture,
+    }));
+  },
+  saveWorld: () => {
+    set((prev) => {
+      setLocalStorage('cubes', prev.cubes);
+      return prev;
+    });
+  },
+  resetWorld: () => {
+    set(() => ({
+      cubes: [],
+    }));
+  },
 }));
