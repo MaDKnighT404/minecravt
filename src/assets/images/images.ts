@@ -8,6 +8,6 @@ export {
 	dirtImg,
 	grassImg,
 	glassImg,
-	woodImg,
 	logImg,
+	woodImg,
 }

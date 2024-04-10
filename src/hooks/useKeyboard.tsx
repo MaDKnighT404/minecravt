@@ -6,6 +6,7 @@ function actionByKey(key: string): string | undefined {
     KeyS: 'moveBackward',
     KeyA: 'moveLeft',
     KeyD: 'moveRight',
+    AltLeft: 'remove',
     Space: 'jump',
     Digit1: 'dirt',
     Digit2: 'grass',
@@ -13,7 +14,7 @@ function actionByKey(key: string): string | undefined {
     Digit4: 'wood',
     Digit5: 'log',
   };
-  console.log(keyActionMap[key]);
+
   return keyActionMap[key];
 }
 
@@ -23,6 +24,7 @@ export const useKeyboard = () => {
     moveBackward: false,
     moveLeft: false,
     moveRight: false,
+    remove: false,
     jump: false,
     dirt: false,
     grass: false,
