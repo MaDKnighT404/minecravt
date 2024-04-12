@@ -3,21 +3,10 @@ import { useMouse } from '../hooks/useMouse';
 import { dirtImg, grassImg, glassImg, logImg, woodImg } from '../assets/images/images';
 
 export const ButtonsDescriptions = () => {
-  const isClicking = useMouse();
+  const { isMiddleClicking } = useMouse();
 
-  const {
-    moveBackward,
-    moveForward,
-    moveRight,
-    moveLeft,
-    jump,
-    remove,
-    dirt,
-    grass,
-    glass,
-    wood,
-    log,
-  } = useKeyboard();
+  const { moveBackward, moveForward, moveRight, moveLeft, jump, dirt, grass, glass, wood, log } =
+    useKeyboard();
 
   return (
     <div className="absolute buttons-description top-right">
@@ -39,8 +28,7 @@ export const ButtonsDescriptions = () => {
           <span className={`${jump && 'activeBtn'}`}>Space</span>: Jump
         </li>
         <li>
-          <span className={`${remove && 'activeBtn'}`}>Alt (Hold)</span> +
-          <span className={`${isClicking && 'activeBtn'}`}>click</span>: remove block
+          <span className={`${isMiddleClicking && 'activeBtn'}`}>MButton</span>: remove block
         </li>
       </ul>
       <h3>Select block:</h3>

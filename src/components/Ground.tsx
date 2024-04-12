@@ -18,7 +18,9 @@ export const Ground = () => {
       onClick={(e) => {
         e.stopPropagation();
         const [x, y, z] = Object.values(e.point).map((val) => Math.ceil(val));
-        addCube(x, y, z);
+        if (e.button === 0) {
+          addCube(x, y, z);
+        }
       }}>
       <planeGeometry
         attach="geometry"

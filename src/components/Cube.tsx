@@ -3,6 +3,7 @@ import * as textures from '../assets/images/textures';
 import { Mesh } from 'three';
 import { useStore } from '../hooks/useStore';
 import { useState } from 'react';
+import { useMouse } from '../hooks/useMouse';
 
 type Position = [number, number, number];
 
@@ -13,6 +14,7 @@ type CubeProps = {
 
 export const Cube = ({ position, texture }: CubeProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { isMiddleClicking } = useMouse();
 
   const [ref] = useBox(() => ({
     type: 'Static',
@@ -36,37 +38,39 @@ export const Cube = ({ position, texture }: CubeProps) => {
       onClick={(e) => {
         e.stopPropagation();
         if (e.faceIndex === undefined) return;
+
         const clickedFace = Math.floor(e.faceIndex / 2);
         const { x, y, z } = ref.current!.position;
 
-        if (e.altKey) {
+        if (isMiddleClicking) {
           removeCube(x, y, z);
           return;
         }
-
-        if (clickedFace === 0) {
-          addCube(x + 1, y, z);
-          return;
-        }
-        if (clickedFace === 1) {
-          addCube(x - 1, y, z);
-          return;
-        }
-        if (clickedFace === 2) {
-          addCube(x, y + 1, z);
-          return;
-        }
-        if (clickedFace === 3) {
-          addCube(x, y - 1, z);
-          return;
-        }
-        if (clickedFace === 4) {
-          addCube(x, y, z + 1);
-          return;
-        }
-        if (clickedFace === 5) {
-          addCube(x, y, z - 1);
-          return;
+        if (e.button === 0) {
+          if (clickedFace === 0) {
+            addCube(x + 1, y, z);
+            return;
+          }
+          if (clickedFace === 1) {
+            addCube(x - 1, y, z);
+            return;
+          }
+          if (clickedFace === 2) {
+            addCube(x, y + 1, z);
+            return;
+          }
+          if (clickedFace === 3) {
+            addCube(x, y - 1, z);
+            return;
+          }
+          if (clickedFace === 4) {
+            addCube(x, y, z + 1);
+            return;
+          }
+          if (clickedFace === 5) {
+            addCube(x, y, z - 1);
+            return;
+          }
         }
       }}>
       <boxGeometry attach="geometry" />

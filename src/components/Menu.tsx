@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { useStore } from '../hooks/useStore';
 
 export const Menu = () => {
-  const [saveWorld, resetWorld] = useStore((state) => [state.saveWorld, state.resetWorld,]);
+  const [saveWorld, resetWorld] = useStore((state) => [state.saveWorld, state.resetWorld]);
   const [isShowMessage, setIsShowMessage] = useState(false);
 
   return (
     <>
       <div className="menu absolute">
         <button
+          className="menuBtn"
           onClick={() => {
             saveWorld();
             setIsShowMessage(true);
@@ -18,7 +19,11 @@ export const Menu = () => {
           }}>
           Save
         </button>
-        <button onClick={() => resetWorld()}>Reset</button>
+        <button
+          className="menuBtn"
+          onClick={() => resetWorld()}>
+          Reset
+        </button>
       </div>
       {isShowMessage && (
         <div className="absolute top">
